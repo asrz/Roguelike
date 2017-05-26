@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.xtend.XTEND_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/Java Libraries/controlsfx-8.40.12/controlsfx-8.40.12.jar"/>
+	<classpathentry kind="lib" path="D:/Java Libraries/openjfx-dialogs-1.0.2.jar"/>
+	<classpathentry kind="lib" path="/lombok-master/dist/lombok.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

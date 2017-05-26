@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane centerShape="false" prefHeight="520.0" prefWidth="400.0"
+	styleClass="background" stylesheets="@/view/DarkTheme.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.pages.screens.map.MapController">
+	<center>
+		<GridPane fx:id="mapGrid" alignment="BOTTOM_RIGHT">
+		</GridPane>
+	</center>
+	<bottom>
+		<VBox prefHeight="130.0" BorderPane.alignment="CENTER">
+			<children>
+				<Label fx:id="tileContentsLabel" prefHeight="20.0" prefWidth="415.0" />
+				<ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0"
+					prefHeight="110.0" prefWidth="600.0" styleClass="background"
+					vbarPolicy="ALWAYS">
+					<content>
+						<TextFlow fx:id="messageBox" prefHeight="110.0"
+							prefWidth="385.0" styleClass="background" />
+					</content>
+				</ScrollPane>
+			</children>
+		</VBox>
+	</bottom>
+	<right>
+		<VBox fx:id="characterBox" prefWidth="100.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<Label fx:id="playerNameLabel" prefHeight="17.0" prefWidth="109.0"
+					textAlignment="CENTER" />
+				<StackPane prefHeight="2.0" prefWidth="100.0">
+					<children>
+						<ProgressBar fx:id="hpBar" prefWidth="200.0" progress="1.0"
+							style="-fx-text-box-border: black; -fx-accent: red; -fx-control-inner-background: darkred;" />
+						<Label fx:id="hpBarLabel" styleClass="barLabel" text="Label"
+							textFill="WHITE" />
+					</children>
+				</StackPane>
+				<Label text="Resistances:" />
+				<Label fx:id="resistancesLabel" alignment="TOP_LEFT"
+					prefHeight="93.0" prefWidth="102.0" wrapText="true" />
+				<Label text="Vulnerabilities:" />
+				<Label fx:id="vulnerabilitiesLabel" alignment="TOP_LEFT"
+					prefHeight="93.0" prefWidth="102.0" wrapText="true" />
+				<Label text="Immunities:" />
+				<Label fx:id="immunitiesLabel" alignment="TOP_LEFT"
+					prefHeight="93.0" prefWidth="102.0" wrapText="true" />
+			</children>
+		</VBox>
+	</right>
+</BorderPane>

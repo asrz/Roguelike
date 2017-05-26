@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane fx:id="tabPane" prefHeight="450.0" prefWidth="425.0"
+	side="TOP" styleClass="background" stylesheets="@/view/DarkTheme.css"
+	tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.pages.dialogs.inventory.InventoryController">
+	<tabs>
+		<Tab fx:id="allTab" text="All Items">
+			<content>
+				<TableView fx:id="inventoryTable" GridPane.columnIndex="0"
+					GridPane.rowIndex="0">
+					<columns>
+						<TableColumn fx:id="itemQuantityColumn" editable="false" prefWidth="50.0" text="#" />
+						<TableColumn fx:id="itemNameColumn" editable="false" prefWidth="150.0" text="Item" />
+						<TableColumn fx:id="dropItemColumn" editable="false"
+							prefWidth="100.0" text="Drop" />
+						<TableColumn fx:id="useItemColumn" editable="false"
+							prefWidth="100.0" text="Use" />
+					</columns>
+					<items>
+						<FXCollections fx:factory="observableArrayList" />
+					</items>
+				</TableView>
+			</content>
+		</Tab>
+		<Tab text="Equipment">
+			<content>
+				<VBox prefHeight="200.0" prefWidth="320.0">
+					<children>
+						<TableView fx:id="equippedEquipmentTable" prefHeight="210.0"
+							prefWidth="320.0">
+							<columns>
+								<TableColumn fx:id="equippedSlotColumn" prefWidth="100.0"
+									text="Slot">
+									<cellValueFactory>
+										<PropertyValueFactory property="slot" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn fx:id="equippedNameColumn" prefWidth="100.0"
+									text="Equipment">
+									<cellValueFactory>
+										<PropertyValueFactory property="name" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn fx:id="equippedUnequipColumn"
+									prefWidth="100.0" text="Unequip" />
+								<TableColumn fx:id="equippedUseColumn" prefWidth="100.0"
+									text="Use" />
+							</columns>
+						</TableView>
+						<TableView fx:id="unequippedEquipmentTable" prefHeight="210.0"
+							prefWidth="320.0">
+							<columns>
+								<TableColumn fx:id="unequippedSlotColumn" prefWidth="100.0"
+									text="Slot">
+									<cellValueFactory>
+										<PropertyValueFactory property="slot" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn fx:id="unequippedNameColumn" prefWidth="100.0"
+									text="Equipment">
+									<cellValueFactory>
+										<PropertyValueFactory property="name" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn fx:id="unequippedEquipColumn"
+									prefWidth="100.0" text="Equip" />
+								<TableColumn fx:id="unequippedDropColumn" prefWidth="100.0"
+									text="Drop" />
+							</columns>
+						</TableView>
+					</children>
+				</VBox>
+			</content>
+		</Tab>
+	</tabs>
+</TabPane>

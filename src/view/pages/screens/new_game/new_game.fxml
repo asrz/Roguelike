@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.TextField?>
+
+<VBox alignment="CENTER" prefHeight="520.0" prefWidth="415.0"
+	styleClass="background" stylesheets="@/view/DarkTheme.css" xmlns="http://javafx.com/javafx/8"
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.pages.screens.new_game.NewGameController">
+	<children>
+		<HBox alignment="BOTTOM_CENTER">
+			<children>
+				<Label alignment="CENTER" text="Player Name: " />
+				<TextField fx:id="playerName" text="Amthalion" />
+			</children>
+		</HBox>
+		<Button alignment="TOP_CENTER" contentDisplay="CENTER"
+			defaultButton="true" onAction="#handleStartGameButtonAction" text="Start Game"
+			textAlignment="CENTER" />
+	</children>
+</VBox>
