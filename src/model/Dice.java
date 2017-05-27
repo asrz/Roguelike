@@ -3,14 +3,12 @@ package model;
 
 import java.util.Random;
 
-import lombok.Getter;
 
 public class Dice {
 
 	private static Random rng = new Random();
 
 	private int dice;
-	@Getter
 	private int sides;
 	private int bonus;
 
@@ -38,6 +36,7 @@ public class Dice {
 		return dice;
 	}
 	
+	public int getSides() { return sides; }
 	
 	public int getBonus() {
 		return bonus;

@@ -11,7 +11,7 @@ import map.Map;
 import map.Tile;
 import model.Actor;
 import model.Colour;
-import model.Dice;
+import model.Dice2;
 import model.Interactable;
 import model.ai.AggressiveAi;
 import model.ai.Ai;
@@ -78,7 +78,7 @@ public class NewGameController implements ControlledScreen {
 		int y = player.getTile().getY() + 2;
 		Actor goblin = new Actor("goblin", 'g', Colour.DARKGREEN, true, map.getTile(x, y));
 		new Destructible(goblin, 100, 13, 12);
-		new Attacker(goblin, 2, new Dice(1, 4, 1), DamageType.PIERCING);
+		new Attacker(goblin, 2, new Dice2(1, 4, 1), DamageType.PIERCING);
 		// new RandomAi(goblin);
 		Ai aggro = new AggressiveAi(goblin, player, 5, false);
 		new SlowedAi(goblin, -1, aggro, 2);
@@ -106,26 +106,26 @@ public class NewGameController implements ControlledScreen {
 
 		Actor potion = new Actor("Healing Potion", '&', Colour.VIOLET, false);
 		new Pickable(potion, player);
-		new HealingUsable(potion, 1, 0, new Dice(2, 4, 2));
+		new HealingUsable(potion, 1, 0, new Dice2(2, 4, 2));
 		
 		potion = new Actor("Healing Potion", '&', Colour.VIOLET, false);
 		new Pickable(potion, player);
-		new HealingUsable(potion, 1, 0, new Dice(2, 4, 2));
+		new HealingUsable(potion, 1, 0, new Dice2(2, 4, 2));
 		
 		potion = new Actor("Healing Potion", '&', Colour.VIOLET, false);
 		new Pickable(potion, chest);
-		new HealingUsable(potion, 1, 0, new Dice(2, 4, 2));
+		new HealingUsable(potion, 1, 0, new Dice2(2, 4, 2));
 
 		Actor rock = new Actor("Rock", '*', Colour.GREY, false);
 		new Pickable(rock, chest);
 
 		Actor sword = new Actor("Sword", '/', Colour.SILVER, false);
 		new Pickable(sword, chest);
-		new Weapon(sword, 2, new Dice(1, 8, 2), DamageType.SLASHING);
+		new Weapon(sword, 2, new Dice2(1, 8, 2), DamageType.SLASHING);
 
 		Actor rainbowSword = new Actor("Rainbow Sword", '/', Colour.AQUAMARINE, false);
 		new Pickable(rainbowSword, chest);
-		new Weapon(rainbowSword, 3, new Dice(1, 8, 3), DamageType.SLASHING);
+		new Weapon(rainbowSword, 3, new Dice2(1, 8, 3), DamageType.SLASHING);
 		new Usable(rainbowSword) {
 			@Override
 			public boolean use(Actor user) {
