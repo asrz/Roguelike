@@ -5,20 +5,20 @@ import java.util.Optional;
 import model.Actor;
 import model.Colour;
 import model.Dice;
-import model.Dice2;
+import model.Dice;
 import model.helper.ActorStack;
 import model.items.equipment.Weapon;
 import view.ScreensController;
 
 public class Attacker {
-	private Dice2 defaultDamage;
+	private Dice defaultDamage;
 	private DamageType defaultDamageType;
 
 	private int bonus;
 
 	protected Actor owner;
 
-	public Attacker(Actor owner, int bonus, Dice2 defaultDamage, DamageType defaultDamageType) {
+	public Attacker(Actor owner, int bonus, Dice defaultDamage, DamageType defaultDamageType) {
 		this.owner = owner;
 		owner.setAttacker(this);
 
@@ -28,7 +28,7 @@ public class Attacker {
 	}
 
 	public Attacker(Actor owner, int bonus) {
-		this(owner, bonus, new Dice2(1, 4, 0), DamageType.BLUNT);
+		this(owner, bonus, new Dice(1, 4, 0), DamageType.BLUNT);
 	}
 
 	public int getBonus() {
@@ -47,7 +47,7 @@ public class Attacker {
 
 		Destructible destructible = target.getDestructible().get();
 
-		int attackRoll = Dice2.roll(1, 20, getTotalAttack());
+		int attackRoll = Dice.roll(1, 20, getTotalAttack());
 		if (attackRoll < destructible.getAc()) {
 			ScreensController.addMessage(Colour.LIGHTGOLDENRODYELLOW, "%s attacks %s but misses.", owner.getName(), target.getName());
 		} else {
@@ -64,7 +64,7 @@ public class Attacker {
 		return owner.getEquipment().flatMap(eq -> eq.getEquipped("Weapon")).map(ActorStack::peek).flatMap(Actor::getEquipable).map(eq -> (Weapon) eq);
 	}
 
-	private Dice2 getDamage() {
+	private Dice getDamage() {
 		return getWeapon().map(Weapon::getDamage).orElse(defaultDamage);
 	}
 

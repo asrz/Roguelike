@@ -4,15 +4,15 @@ package model.items.usable;
 import model.Actor;
 import model.Colour;
 import model.Dice;
-import model.Dice2;
+import model.Dice;
 import model.combat.Destructible;
 
 
 public class HealingUsable extends Usable {
 
-	private Dice2 healing;
+	private Dice healing;
 
-	public HealingUsable(Actor owner, int uses, int cooldown, Dice2 healing) {
+	public HealingUsable(Actor owner, int uses, int cooldown, Dice healing) {
 		super(owner, uses, cooldown);
 		this.healing = healing;
 	}

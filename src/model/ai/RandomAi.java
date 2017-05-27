@@ -4,7 +4,7 @@ import map.Map;
 import model.Actor;
 import model.Direction;
 import util.Context;
-import model.Dice2;
+import model.Dice;
 
 public class RandomAi extends Ai {
 
@@ -15,7 +15,7 @@ public class RandomAi extends Ai {
 	@Override
 	public void update(Context context) {
 		Map map = context.getMap();
-		Direction direction = Dice2.choice(Direction.values());
+		Direction direction = Dice.choice(Direction.values());
 		map.moveActor(owner, direction);
 		super.update(context);
 	}

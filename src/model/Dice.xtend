@@ -4,7 +4,7 @@ import org.eclipse.xtend.lib.annotations.Data
 import java.util.Random
 
 @Data
-class Dice2 {
+class Dice {
 	static Random rng = new Random();
 	
 	int dice
@@ -25,6 +25,6 @@ class Dice2 {
 	}
 	
 	def static roll(int dice, int sides, int bonus) {
-		new Dice2(dice, sides, bonus).roll()
+		new Dice(dice, sides, bonus).roll()
 	}
 }
