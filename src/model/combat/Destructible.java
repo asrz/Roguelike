@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import model.Actor;
-import model.Colour;
+import model.Colours;
 import view.ScreensController;
 
 public class Destructible {
@@ -171,7 +171,7 @@ public class Destructible {
 			damage *= 2;
 		}
 
-		ScreensController.addMessage(Colour.GREEN, "%s hits %s for %d %s damage.", source.getName(), owner.getName(), damage, damageType.getLabel());
+		ScreensController.addMessage(Colours.GREEN, "%s hits %s for %d %s damage.", source.getName(), owner.getName(), damage, damageType.getLabel());
 
 		if (damage >= getHp()) {
 			damage = getHp();
@@ -186,12 +186,12 @@ public class Destructible {
 
 	private void die(Actor killer) {
 		// creates a corpse
-		new Actor("dead " + owner.getName(), '%', Colour.DARKRED, false, owner.getTile());
+		new Actor("dead " + owner.getName(), '%', Colours.DARKRED, false, owner.getTile());
 
 		// removes owner from the map
 		owner.destroy();
 
-		ScreensController.addMessage(Colour.RED, "%s is killed by %s.", owner.getName(), killer.getName());
+		ScreensController.addMessage(Colours.RED, "%s is killed by %s.", owner.getName(), killer.getName());
 	}
 
 	public boolean isFullHp() {

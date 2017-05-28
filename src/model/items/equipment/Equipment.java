@@ -7,7 +7,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import model.Actor;
-import model.Colour;
+import model.Colours;
 import model.helper.ActorStack;
 import model.items.Pickable;
 
@@ -36,13 +36,13 @@ public class Equipment {
 	public boolean equip(ActorStack actorStack) {
 		Actor sample = actorStack.peek();
 		if (!sample.getEquipable().isPresent()) { // if not equippable
-			owner.logIfPlayer(Colour.ALICEBLUE, "The %s cannot be equipped.", actorStack.getName());
+			owner.logIfPlayer(Colours.ALICEBLUE, "The %s cannot be equipped.", actorStack.getName());
 			return false;
 		}
 		
 		Equipable equipable = sample.getEquipable().get();
 		if (!equipment.containsKey(equipable.getSlot())) { // if this doesn't have the slot.
-			owner.logIfPlayer(Colour.AQUA, "You cannot equip the %s.", actorStack.getName());
+			owner.logIfPlayer(Colours.AQUA, "You cannot equip the %s.", actorStack.getName());
 			return false;
 		} else { // equip it
 			// if something's already equipped, unequip it
@@ -66,7 +66,7 @@ public class Equipment {
 				.flatMap(Actor::getContainer)
 				.ifPresent(container -> container.removeAllByName(actorStack.getName()));
 
-			owner.logIfPlayer(Colour.AQUAMARINE, "You equip the %s.", actorStack.getName());
+			owner.logIfPlayer(Colours.AQUAMARINE, "You equip the %s.", actorStack.getName());
 			return true;
 		}
 	}
@@ -74,7 +74,7 @@ public class Equipment {
 	public boolean unequip(ActorStack equipped) {
 		Equipable equipable = equipped.getActors().get(0).getEquipable().get();
 		if (equipable.isCursed()) {
-			owner.logIfPlayer(Colour.AQUA, "You cannot unequip the %s.", equipped.getName());
+			owner.logIfPlayer(Colours.AQUA, "You cannot unequip the %s.", equipped.getName());
 			return false;
 		}
 		

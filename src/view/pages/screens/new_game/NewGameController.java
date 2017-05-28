@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import map.Map;
 import map.Tile;
 import model.Actor;
-import model.Colour;
+import model.Colours;
 import model.Dice;
 import model.Interactable;
 import model.ai.AggressiveAi;
@@ -63,7 +63,7 @@ public class NewGameController implements ControlledScreen {
 		int centre_x = map.getWidth() / 2;
 		int centre_y = map.getHeight() / 2;
 
-		Actor player = new Actor(playerName, '@', Colour.WHITE, true, map.getTile(centre_x, centre_y));
+		Actor player = new Actor(playerName, '@', Colours.WHITE, true, map.getTile(centre_x, centre_y));
 		new Attacker(player, 3);
 		new Destructible(player, 25, 15, 0);
 		Destructible playerDestructible = player.getDestructible().get();
@@ -76,7 +76,7 @@ public class NewGameController implements ControlledScreen {
 	private void createGoblin(Map map, Actor player) {
 		int x = player.getTile().getX() + 2;
 		int y = player.getTile().getY() + 2;
-		Actor goblin = new Actor("goblin", 'g', Colour.DARKGREEN, true, map.getTile(x, y));
+		Actor goblin = new Actor("goblin", 'g', Colours.DARKGREEN, true, map.getTile(x, y));
 		new Destructible(goblin, 100, 13, 12);
 		new Attacker(goblin, 2, new Dice(1, 4, 1), DamageType.PIERCING);
 		// new RandomAi(goblin);
@@ -92,7 +92,7 @@ public class NewGameController implements ControlledScreen {
 
 		Tile tile = map.getTile(x, y);
 
-		Actor chest = new Actor("Chest", '=', Colour.BROWN, true, tile);
+		Actor chest = new Actor("Chest", '=', Colours.BROWN, true, tile);
 		new Container(chest);
 		new Interactable(chest) {
 			@Override
@@ -104,26 +104,26 @@ public class NewGameController implements ControlledScreen {
 			}
 		};
 
-		Actor potion = new Actor("Healing Potion", '&', Colour.VIOLET, false);
+		Actor potion = new Actor("Healing Potion", '&', Colours.VIOLET, false);
 		new Pickable(potion, player);
 		new HealingUsable(potion, 1, 0, new Dice(2, 4, 2));
 		
-		potion = new Actor("Healing Potion", '&', Colour.VIOLET, false);
+		potion = new Actor("Healing Potion", '&', Colours.VIOLET, false);
 		new Pickable(potion, player);
 		new HealingUsable(potion, 1, 0, new Dice(2, 4, 2));
 		
-		potion = new Actor("Healing Potion", '&', Colour.VIOLET, false);
+		potion = new Actor("Healing Potion", '&', Colours.VIOLET, false);
 		new Pickable(potion, chest);
 		new HealingUsable(potion, 1, 0, new Dice(2, 4, 2));
 
-		Actor rock = new Actor("Rock", '*', Colour.GREY, false);
+		Actor rock = new Actor("Rock", '*', Colours.GREY, false);
 		new Pickable(rock, chest);
 
-		Actor sword = new Actor("Sword", '/', Colour.SILVER, false);
+		Actor sword = new Actor("Sword", '/', Colours.SILVER, false);
 		new Pickable(sword, chest);
 		new Weapon(sword, 2, new Dice(1, 8, 2), DamageType.SLASHING);
 
-		Actor rainbowSword = new Actor("Rainbow Sword", '/', Colour.AQUAMARINE, false);
+		Actor rainbowSword = new Actor("Rainbow Sword", '/', Colours.AQUAMARINE, false);
 		new Pickable(rainbowSword, chest);
 		new Weapon(rainbowSword, 3, new Dice(1, 8, 3), DamageType.SLASHING);
 		new Usable(rainbowSword) {
@@ -141,7 +141,7 @@ public class NewGameController implements ControlledScreen {
 			}
 		};
 
-		Actor rainbowArmour = new Actor("Rainbow Armour", 'x', Colour.GOLD, false);
+		Actor rainbowArmour = new Actor("Rainbow Armour", 'x', Colours.GOLD, false);
 		new Pickable(rainbowArmour, chest);
 		new Armour(rainbowArmour, 1);
 		new Usable(rainbowArmour) {
@@ -158,7 +158,7 @@ public class NewGameController implements ControlledScreen {
 			}
 		};
 
-		Actor lightningBoltScroll = new Actor("Scroll of Lightning Bolt", '#', Colour.YELLOW, false);
+		Actor lightningBoltScroll = new Actor("Scroll of Lightning Bolt", '#', Colours.YELLOW, false);
 		new Pickable(lightningBoltScroll, chest);
 		new Usable(lightningBoltScroll, 1, 0) {
 			@Override
@@ -171,12 +171,12 @@ public class NewGameController implements ControlledScreen {
 			}
 		};
 
-		Actor cursedRing = new Actor("Ring", 'o', Colour.GOLD, false);
+		Actor cursedRing = new Actor("Ring", 'o', Colours.GOLD, false);
 		new Pickable(cursedRing, chest);
 		new Equipable(cursedRing, "Ring", true);
 		
 		for (int i = 0; i < 10; i++) {
-			Actor dart = new Actor("Dart", '-', Colour.OLIVE, false);
+			Actor dart = new Actor("Dart", '-', Colours.OLIVE, false);
 			new Pickable(dart, chest);
 			new Equipable(dart, "Ammo");
 		}

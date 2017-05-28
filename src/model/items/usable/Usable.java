@@ -2,7 +2,7 @@ package model.items.usable;
 
 
 import model.Actor;
-import model.Colour;
+import model.Colours;
 import view.ScreensController;
 
 
@@ -26,17 +26,17 @@ public abstract class Usable {
 	}
 
 	public boolean use(Actor user) {
-		ScreensController.addMessage(Colour.BLUE, "%s attempts to uses the %s.", user.getName(), owner.getName());
+		ScreensController.addMessage(Colours.BLUE, "%s attempts to uses the %s.", user.getName(), owner.getName());
 
 		if (currentCooldown > 0) {
-			user.logIfPlayer(Colour.BLANCHEDALMOND, "You cannot use %s yet.", owner.getName());
+			user.logIfPlayer(Colours.BLANCHEDALMOND, "You cannot use %s yet.", owner.getName());
 			return false;
 		}
 
 		if (uses > 0) {
 			uses--;
 			if (uses == 0) {
-				user.logIfPlayer(Colour.LIGHTSKYBLUE, "%s has been used up.", owner.getName());
+				user.logIfPlayer(Colours.LIGHTSKYBLUE, "%s has been used up.", owner.getName());
 				destroy();
 				return false;
 			}

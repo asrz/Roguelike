@@ -1,28 +1,8 @@
-package model;
+package model
 
+import javafx.scene.paint.Color
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.scene.paint.Color;
-
-
-public class Colour {
-
-	private StringProperty nameProperty;
-	private ObjectProperty<Color> color;
-
-	public Colour(String name, Color color) {
-		this.nameProperty = new SimpleStringProperty(name);
-		this.color = new SimpleObjectProperty<>(color);
-	}
-
-	@Override
-	public String toString() {
-		return nameProperty + ":" + color.toString();
-	}
-
+final class Colours {
 	public static final Colour TRANSPARENT = new Colour("transparent", Color.TRANSPARENT);
 	public static final Colour ALICEBLUE = new Colour("alice blue", Color.ALICEBLUE);
 	public static final Colour ANTIQUEWHITE = new Colour("antique white", Color.ANTIQUEWHITE);
@@ -171,28 +151,5 @@ public class Colour {
 	public static final Colour WHITESMOKE = new Colour("white smoke", Color.WHITESMOKE);
 	public static final Colour YELLOW = new Colour("yellow", Color.YELLOW);
 	public static final Colour YELLOWGREEN = new Colour("yellow-green", Color.YELLOWGREEN);
-
-	public final StringProperty nameProperty() {
-		return nameProperty;
-	}
-
-	public final String getName() {
-		return this.nameProperty().get();
-	}
-
-	public final void setName(final String name) {
-		this.nameProperty().set(name);
-	}
-
-	public final ObjectProperty<Color> colorProperty() {
-		return this.color;
-	}
-
-	public final Color getColor() {
-		return color.get();
-	}
-
-	public final void setColor(final Color color) {
-		this.colorProperty().set(color);
-	}
+	
 }

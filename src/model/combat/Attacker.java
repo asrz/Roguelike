@@ -3,8 +3,7 @@ package model.combat;
 import java.util.Optional;
 
 import model.Actor;
-import model.Colour;
-import model.Dice;
+import model.Colours;
 import model.Dice;
 import model.helper.ActorStack;
 import model.items.equipment.Weapon;
@@ -41,7 +40,7 @@ public class Attacker {
 
 	public void attack(Actor target) {
 		if (!target.getDestructible().isPresent()) {
-			owner.logIfPlayer(Colour.LIGHTGREY, "%s cannot be attacked.", target.getName());
+			owner.logIfPlayer(Colours.LIGHTGREY, "%s cannot be attacked.", target.getName());
 			return;
 		}
 
@@ -49,7 +48,7 @@ public class Attacker {
 
 		int attackRoll = Dice.roll(1, 20, getTotalAttack());
 		if (attackRoll < destructible.getAc()) {
-			ScreensController.addMessage(Colour.LIGHTGOLDENRODYELLOW, "%s attacks %s but misses.", owner.getName(), target.getName());
+			ScreensController.addMessage(Colours.LIGHTGOLDENRODYELLOW, "%s attacks %s but misses.", owner.getName(), target.getName());
 		} else {
 			int damageRoll = getDamage().roll();
 			destructible.takeDamage(damageRoll, getDamageType(), owner);

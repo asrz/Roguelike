@@ -3,7 +3,6 @@ package model.items.equipment;
 
 import model.Actor;
 import model.Dice;
-import model.Dice;
 import model.combat.DamageType;
 
 

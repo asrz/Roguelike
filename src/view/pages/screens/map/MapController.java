@@ -32,6 +32,7 @@ import map.Map;
 import map.Tile;
 import model.Actor;
 import model.Colour;
+import model.Colours;
 import model.combat.DamageType;
 import model.combat.Destructible;
 import util.Context;
@@ -133,7 +134,7 @@ public class MapController implements ControlledScreen {
 	public void onLoad(Context context) {
 		draw();
 		mapGrid.requestLayout();
-		addMessage(String.format("Welcome to game, %s", context.getPlayer().getName()), Colour.BLUE);
+		addMessage(String.format("Welcome to game, %s", context.getPlayer().getName()), Colours.BLUE);
 	}
 
 	public void addMessage(String message, Colour colour) {
@@ -151,7 +152,7 @@ public class MapController implements ControlledScreen {
 				Timeline timeline = new Timeline(
 						new KeyFrame(Duration.seconds(0), e -> tileView.requestLayout(),
 								new KeyValue(tileView.getLabel().textProperty(), "X", Interpolator.DISCRETE),
-								new KeyValue(tileView.getLabel().textFillProperty(), Colour.YELLOW.getColor(), Interpolator.DISCRETE)),
+								new KeyValue(tileView.getLabel().textFillProperty(), Colours.YELLOW.getColor(), Interpolator.DISCRETE)),
 						new KeyFrame(Duration.millis(750), e -> tileView.requestLayout(),
 								new KeyValue(tileView.getLabel().textProperty(), tileView.getTile().getCharacter().toString(), Interpolator.DISCRETE),
 								new KeyValue(tileView.getLabel().textFillProperty(), tileView.getTile().getForegroundColor(), Interpolator.DISCRETE)),

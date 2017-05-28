@@ -15,6 +15,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.paint.Color;
 import model.Actor;
 import model.Colour;
+import model.Colours;
 import model.helper.ActorStack;
 
 public class Tile {
@@ -22,8 +23,8 @@ public class Tile {
 	private ObservableList<Actor> _actors;
 	private SortedList<Actor> actors;
 
-	private static Colour wallColour = Colour.BLACK;
-	private static Colour floorColour = Colour.GREEN;
+	private static Colour wallColour = Colours.BLACK;
+	private static Colour floorColour = Colours.GREEN;
 
 	private int x;
 	private int y;
@@ -41,7 +42,7 @@ public class Tile {
 		this.explored = true;
 
 		this.symbolProperty = new SimpleStringProperty(".");
-		this.foregroundColorProperty = new SimpleObjectProperty<>(Colour.WHITE.getColor());
+		this.foregroundColorProperty = new SimpleObjectProperty<>(Colours.WHITE.getColor());
 
 		_actors = FXCollections.observableArrayList();
 		actors = new SortedList<>(_actors, Comparator.comparingInt(Actor::getDisplayPriority));
@@ -84,7 +85,7 @@ public class Tile {
 	public Color getBackgroundColor() {
 		// Colour colour = wall ? wallColour : floorColour;
 		// return colour.getColor();
-		return Colour.BLACK.getColor();
+		return Colours.BLACK.getColor();
 	}
 
 	public boolean addActor(Actor actor) {
@@ -119,7 +120,7 @@ public class Tile {
 			foregroundColorProperty.set(actor.getColour().getColor());
 		} else {
 			symbolProperty.set(".");
-			foregroundColorProperty.set(Colour.WHITE.getColor());
+			foregroundColorProperty.set(Colours.WHITE.getColor());
 		}
 	}
 
