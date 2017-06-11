@@ -1,10 +1,8 @@
 package view.pages.dialogs.pickup_menu
 
-import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.fxml.FXML
 import javafx.scene.control.Button
-import map.Tile
 import modelX.ActorX
 import modelX.helperX.ActorStackX
 import org.controlsfx.control.CheckListView
@@ -13,6 +11,8 @@ import util.Context
 import view.ControlledScreen
 import view.Page
 import view.ScreensController
+
+import static extension util.CollectionsUtil.*
 
 class PickupMenuController implements ControlledScreen {
 	ActorX player
@@ -27,18 +27,21 @@ class PickupMenuController implements ControlledScreen {
 	}
 
 	def private void pickupItems(ObservableList<ActorStackX> items) {
-		items.map[ actors ].flatten.forEach[pickable.pickup(player)]
+		items.forEach[
+			player.container.addItems(it)
+			player.tile.removeActorStack(it)
+		]
 		ScreensController::getScreensController().closeWindow(Page::PICKUP_MENU)
 	}
 
 	@FXML def void pickupSelectedItems() {
-		var ObservableList<ActorStackX> selectedItems = checkListView.checkModel.checkedItems
+		val ObservableList<ActorStackX> selectedItems = checkListView.checkModel.checkedItems
 		pickupItems(selectedItems)
 	}
 
 	override void onLoad(Context context) {
-		player = context.getPlayer()
-		var Tile tile = player.getTile()
-		checkListView.setItems(FXCollections.observableArrayList(tile.actors.filter[ peek().pickable !== null].toList))
+		player = context.player
+		val actors = player.tile.actors
+		checkListView.setItems(actors.filter[ peek().pickable !== null].toObservableList)
 	}
 }

@@ -73,16 +73,20 @@ class ContainerX extends ComponentX {
 	
 	def addItem(ActorX actor) {
 		addToMap(actor, inventory)
+		actor.pickable.container = owner
 	}
 	
 	def addItems(ActorStackX actors) {
+		actors.actors.forEach[ 
+			pickable.container = owner
+		]
 		addStackToMap(actors, inventory)
 	}
 	
 	def addStackToMap(ActorStackX actors, Map<String, ActorStackX> map) {
 		if (map.containsKey(actors.name)) {
 			val actorStack = map.remove(actors.name)
-			actorStack.addAll(actors.actors)
+			actorStack.addAll(actors)
 			map.put(actors.name, actorStack)
 		} else {
 			map.put(actors.name, actors)

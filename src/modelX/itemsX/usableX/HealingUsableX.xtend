@@ -13,16 +13,16 @@ class HealingUsableX extends UsableX {
 	}
 
 	override boolean use(ActorX user) {
+		if (user.destructible === null) {
+			return false;
+		}
+		
+		if (user.destructible.isFullHp()) {
+			user.logIfPlayer(ColoursX::LIGHTPINK, "You are already full health.")
+			return false
+		}
+			
 		if (super.use(user)) {
-			if (user.destructible === null) {
-				return false;
-			}
-			
-			if (user.destructible.isFullHp()) {
-				user.logIfPlayer(ColoursX::LIGHTPINK, "You are already full health.")
-				return false
-			}
-			
 			var int amount = healing.roll()
 			var int healingDone = user.getDestructible().heal(amount)
 			user.logIfPlayer(ColoursX::PINK, '''You heal for «healingDone» hp.''')

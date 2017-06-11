@@ -53,7 +53,7 @@ class NewGameController implements ControlledScreen {
 		var int centre_x = map.width / 2
 		var int centre_y = map.height / 2
 		var ActorX player = new ActorX(playerName, '@', ColoursX::WHITE, true)
-		player.tile = map.getTile(centre_x, centre_y)
+		map.getTile(centre_x, centre_y).addActor(player)
 		new AttackerX(player, 3)
 		val playerDestructible = new DestructibleX(player, 25, 15, 0)
 //		var DestructibleX playerDestructible = player.destructible
@@ -67,7 +67,7 @@ class NewGameController implements ControlledScreen {
 		var int x = player.getTile().getX() + 2
 		var int y = player.getTile().getY() + 2
 		var ActorX goblin = new ActorX("goblin", Character.valueOf('g').charValue, ColoursX::DARKGREEN, true)
-		goblin.tile = map.getTile(x, y)
+		map.getTile(x, y).addActor(goblin)
 		new DestructibleX(goblin, 10, 13, 12)
 		new AttackerX(goblin, 2, new DiceX(1, 4, 1), DamageType::PIERCING)
 		new RandomAiX(goblin);
@@ -81,7 +81,7 @@ class NewGameController implements ControlledScreen {
 		var int y = player.getTile().getY() - 2
 		var Tile tile = map.getTile(x, y)
 		val ActorX chest = new ActorX("Chest", '=', ColoursX::BROWN, true)
-		chest.tile = tile
+		tile.addActor(chest)
 		new ContainerX(chest)
 		new InteractableX(chest) {
 			override void interact(ActorX user) {

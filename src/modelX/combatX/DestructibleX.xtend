@@ -41,7 +41,7 @@ class DestructibleX extends ComponentX {
 	def private die(ActorX killer) {
 		//creates a corpse
 		val corpse = new ActorX("dead " + owner.name, '%', ColoursX.DARKRED, false)
-		corpse.tile = owner.tile
+		owner.tile.addActor(corpse)
 		
 		//removes owner from the map
 		owner.destroy()

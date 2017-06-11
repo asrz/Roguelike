@@ -31,7 +31,7 @@ public enum Page {
 		this.eventHandler = eventHandler;
 		this.isDialog = isDialog;
 		
-		if (isDialog) {
+		if (isDialog && eventHandler == null) {
 			this.eventHandler = new CloseWindowEventHandler(this);
 		}
 	}

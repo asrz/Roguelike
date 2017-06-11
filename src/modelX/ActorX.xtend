@@ -59,14 +59,6 @@ class ActorX {
 		}
 	}
 	
-	def setTile(Tile tile) {
-		getTile()?.removeActor(this)
-
-		this.tile = tile
-
-		tile?.addActor(this)
-	}
-	
 	def destroy() {
 		destroyed = true;
 		tile?.removeActor(this);

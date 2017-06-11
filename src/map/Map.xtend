@@ -43,7 +43,8 @@ class Map {
 		val dest = getTile(x, y)
 		
 		if (canWalk(x, y)) {
-			actor.tile = dest
+			src.removeActor(actor)
+			dest.addActor(actor)
 		} else if (actor.attacker !== null) {
 			val target = dest.getTarget(actor)
 			if (target !== null) {

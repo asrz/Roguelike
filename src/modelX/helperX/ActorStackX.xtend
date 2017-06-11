@@ -50,13 +50,6 @@ class ActorStackX {
 		return actors.remove(0)
 	}
 	
-	def addAll(List<ActorX> actors) {
-		if (actors.exists[ name != this.name]) {
-			throw new IllegalArgumentException("Actor's name does not match the ActorStack.")
-		}
-		actors.addAll(actors)
-	}
-	
 	def addAll(ActorStackX actorStack) {
 		if (actorStack.name != name) {
 			throw new IllegalArgumentException("You cannot add two actor stacks with different names.")
@@ -64,6 +57,7 @@ class ActorStackX {
 		actors.addAll(actorStack.getActors())
 	}
 	
+	@Pure
 	def size() {
 		return actors.size()
 	}

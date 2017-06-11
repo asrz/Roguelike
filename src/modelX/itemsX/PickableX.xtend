@@ -34,13 +34,13 @@ class PickableX extends ComponentX {
 	def pickup(ActorX container) {
 		this.container = container
 		container?.container?.addItem(owner)
-		owner.tile = null
+		owner.tile.removeActor(owner)
 		return container !== null
 	}
 	
 	def drop() {
 		container?.container?.removeItem(owner)
-		owner.tile = container?.tile
+		container?.tile?.addActor(owner)
 		container = null
 	}
 }

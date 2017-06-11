@@ -17,6 +17,8 @@ import util.CollectionsUtil
 import xtendfx.beans.FXBindable
 import xtendfx.beans.Hidden
 
+import static extension util.CollectionsUtil.*
+
 @FXBindable
 class Tile {
 	int x
@@ -57,6 +59,7 @@ class Tile {
 	}
 
 	def removeActor(ActorX actor) {
+		actor.tile = null
 		for (stack : actors) {
 			if (stack.contains(actor)) {
 				val result = stack.remove(actor);
@@ -69,11 +72,18 @@ class Tile {
 		return false;
 	}
 	
+	def removeActorStack(ActorStackX actorStack) {
+		actorStack.actors.forEach[ tile = null ]
+		return _actors.remove(actorStack)
+	}
+	
 	def addActor(ActorX actor) {
 		new ActorStackX(FXCollections.observableArrayList(actor)).addActorStack
 	}
 	
 	def addActorStack(ActorStackX actorStack) {
+		actorStack.actors.forEach[ tile = this ]
+		
 		for (stack : actors) {
 			if (stack.name == actorStack.name) {
 				stack.addAll(actorStack)
@@ -85,8 +95,7 @@ class Tile {
 	
 	def getTarget(ActorX actor) {
 		return actors
-			.map[ actors ]
-			.flatten
+			.flatMap[ actors ]
 			.filter[ destructible !== null ]
 			.findFirst[ it !== actor ]
 	}
@@ -102,11 +111,11 @@ class Tile {
 			return true
 		}
 		
-		return actors.map[ actors ].flatten.exists[ blocks ]
+		return actors.flatMap[ actors ].exists[ blocks ]
 	}
 	
 	def getInteractableActor() {
-		return actors.map[ actors ].flatten.findFirst[ interactable !== null]
+		return actors.flatMap[ actors ].findFirst[ interactable !== null]
 	}
 	
 	def foregroundColorProperty() {
