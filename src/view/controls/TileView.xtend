@@ -10,7 +10,7 @@ import javafx.scene.layout.Background
 import javafx.scene.layout.BackgroundFill
 import javafx.scene.layout.VBox
 import map.Tile
-import modelX.ColourX
+import model.Colour
 
 class TileView extends VBox {
 	@FXML Label label
@@ -38,7 +38,7 @@ class TileView extends VBox {
 		return tileProperty.get()
 	}
 
-	def void setLabel(Character ch, ColourX colour) {
+	def void setLabel(Character ch, Colour colour) {
 		var visited = false
 		unbind()
 		label.setText(ch.toString())

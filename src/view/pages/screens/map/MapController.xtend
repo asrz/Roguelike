@@ -24,14 +24,14 @@ import javafx.scene.text.Text
 import javafx.scene.text.TextFlow
 import javafx.util.Duration
 import map.Tile
-import modelX.ActorX
-import modelX.ColoursX
-import modelX.combatX.DamageType
-import modelX.combatX.DestructibleX
+import model.combat.DamageType
 import util.Context
 import view.ControlledScreen
 import view.GameController
 import view.controls.TileView
+import model.combat.Destructible
+import model.Actor
+import model.Colours
 
 class MapController implements ControlledScreen {
 	@FXML GridPane mapGrid
@@ -58,9 +58,9 @@ class MapController implements ControlledScreen {
 			}
 		}
 		
-		var ActorX player = context.player
+		var Actor player = context.player
 		playerNameLabel.text = player.name
-		var DestructibleX destructible = player.destructible
+		var Destructible destructible = player.destructible
 		hpBarLabel.textProperty().bind(
 			destructible.hpProperty().asString("HP: %d").concat(destructible.maxHpProperty().asString("/%d"))
 		)
@@ -95,7 +95,7 @@ class MapController implements ControlledScreen {
 	override void onLoad(Context context) {
 		draw()
 		mapGrid.requestLayout()
-		addMessage(ColoursX::BLUE.color, '''Welcome to game, «context.player.name»''')
+		addMessage(Colours::BLUE.color, '''Welcome to game, «context.player.name»''')
 	}
 
 	def void addMessage(Color color, String message) {
@@ -118,7 +118,7 @@ class MapController implements ControlledScreen {
 				val Timeline timeline = new Timeline(
 					new KeyFrame(Duration::seconds(0), [tileView.requestLayout()],
 						new KeyValue(tileView.label.textProperty(), "X", Interpolator::DISCRETE),
-						new KeyValue(tileView.label.textFillProperty(), ColoursX::YELLOW.color, Interpolator::DISCRETE)
+						new KeyValue(tileView.label.textFillProperty(), Colours::YELLOW.color, Interpolator::DISCRETE)
 					),
 					new KeyFrame(Duration::millis(750), [tileView.requestLayout()],
 						new KeyValue(tileView.label.textProperty(), tileView.tile.symbol.toString(), Interpolator::DISCRETE),

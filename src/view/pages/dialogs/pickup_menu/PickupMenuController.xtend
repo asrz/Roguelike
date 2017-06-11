@@ -3,8 +3,6 @@ package view.pages.dialogs.pickup_menu
 import javafx.collections.ObservableList
 import javafx.fxml.FXML
 import javafx.scene.control.Button
-import modelX.ActorX
-import modelX.helperX.ActorStackX
 import org.controlsfx.control.CheckListView
 import org.controlsfx.control.IndexedCheckModel
 import util.Context
@@ -13,20 +11,22 @@ import view.Page
 import view.ScreensController
 
 import static extension util.CollectionsUtil.*
+import model.helper.ActorStack
+import model.Actor
 
 class PickupMenuController implements ControlledScreen {
-	ActorX player
-	@FXML CheckListView<ActorStackX> checkListView
+	Actor player
+	@FXML CheckListView<ActorStack> checkListView
 	@FXML Button takeSelectedItemsButton
 	@FXML Button takeAllItemsButton
 
 	@FXML def void pickupAllItems() {
-		var IndexedCheckModel<ActorStackX> checkModel = checkListView.checkModel
+		var IndexedCheckModel<ActorStack> checkModel = checkListView.checkModel
 		checkModel.checkAll()
 		pickupItems(checkModel.getCheckedItems())
 	}
 
-	def private void pickupItems(ObservableList<ActorStackX> items) {
+	def private void pickupItems(ObservableList<ActorStack> items) {
 		items.forEach[
 			player.container.addItems(it)
 			player.tile.removeActorStack(it)
@@ -35,7 +35,7 @@ class PickupMenuController implements ControlledScreen {
 	}
 
 	@FXML def void pickupSelectedItems() {
-		val ObservableList<ActorStackX> selectedItems = checkListView.checkModel.checkedItems
+		val ObservableList<ActorStack> selectedItems = checkListView.checkModel.checkedItems
 		pickupItems(selectedItems)
 	}
 

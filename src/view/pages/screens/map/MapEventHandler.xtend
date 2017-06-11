@@ -4,11 +4,11 @@ import javafx.event.EventHandler
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 import map.Map
-import modelX.ActorX
-import modelX.Direction
+import model.Direction
 import view.GameController
 import view.Page
 import view.ScreensController
+import model.Actor
 
 class MapEventHandler implements EventHandler<KeyEvent> {
 	
@@ -64,7 +64,7 @@ class MapEventHandler implements EventHandler<KeyEvent> {
 		}
 	}
 	
-	def act(Mode mode, Map map, ActorX player, Direction direction) {
+	def act(Mode mode, Map map, Actor player, Direction direction) {
 		switch mode {
 			case INTERACT : map.interact(player, direction)
 			case MOVE : map.moveActor(player, direction)

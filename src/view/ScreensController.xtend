@@ -11,8 +11,8 @@ import javafx.scene.layout.StackPane
 import javafx.stage.Modality
 import javafx.stage.Stage
 import javafx.stage.StageStyle
-import modelX.ColourX
 import view.pages.screens.map.MapController
+import model.Colour
 
 class ScreensController extends StackPane {
 	static ScreensController screensController
@@ -100,7 +100,7 @@ class ScreensController extends StackPane {
 		return screensController
 	}
 
-	def static void addMessage(ColourX colour, String message) {
+	def static void addMessage(Colour colour, String message) {
 		var MapController mapController = (screensController.getController(Page.MAP) as MapController)
 		mapController.addMessage(colour.getColor(), message)
 	}

@@ -2,15 +2,15 @@ package util
 
 import java.util.List
 import map.Map
-import modelX.ActorX
 import org.eclipse.xtend.lib.annotations.Accessors
+import model.Actor
 
 class Context {
 	@Accessors(PUBLIC_GETTER)           Map map
-	@Accessors                          ActorX player
-	@Accessors(PUBLIC_GETTER)           List<ActorX> actors
-	                                    List<ActorX> toAdd
-	                                    List<ActorX> toRemove
+	@Accessors                          Actor player
+	@Accessors(PUBLIC_GETTER)           List<Actor> actors
+	                                    List<Actor> toAdd
+	                                    List<Actor> toRemove
 
 	new(Map map) {
 		this.map = map
@@ -19,11 +19,11 @@ class Context {
 		this.toRemove = newArrayList()
 	}
 
-	def addActor(ActorX actor) {
+	def addActor(Actor actor) {
 		return toAdd.add(actor)
 	}
 
-	def removeActor(ActorX actor) {
+	def removeActor(Actor actor) {
 		return toRemove.remove(actor)
 	}
 	

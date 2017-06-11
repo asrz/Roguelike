@@ -1,8 +1,8 @@
 package map
 
-import modelX.ActorX
-import modelX.Direction
+import model.Direction
 import org.eclipse.xtend.lib.annotations.Accessors
+import model.Actor
 
 @Accessors(PUBLIC_GETTER)
 class Map {
@@ -31,7 +31,7 @@ class Map {
 		return !(x < 0 || y < 0 || x >= width || y >= height)
 	}
 	
-	def void moveActor(ActorX actor, Direction direction) {
+	def void moveActor(Actor actor, Direction direction) {
 		val src = actor.tile
 		val x = src.x + direction.x
 		val y = src.y + direction.y
@@ -63,7 +63,7 @@ class Map {
 	}
 	
 	//returns true if a turn has passed
-	def interact(ActorX actor, Direction direction) {
+	def interact(Actor actor, Direction direction) {
 		val src = actor.tile
 		val x = src.x + direction.x
 		val y = src.y + direction.y
