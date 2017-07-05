@@ -1,8 +1,9 @@
 package map
 
+import model.Actor
+import model.Colours
 import model.Direction
 import org.eclipse.xtend.lib.annotations.Accessors
-import model.Actor
 
 @Accessors(PUBLIC_GETTER)
 class Map {
@@ -24,59 +25,57 @@ class Map {
 	}
 	
 	def Tile getTile(int x, int y) {
-		return tiles.get(x * height + y)
+		return if (isInBounds(x, y)) {
+			tiles.get(x * height + y)
+		}
 	}
 	
 	def boolean isInBounds(int x, int y) {
 		return !(x < 0 || y < 0 || x >= width || y >= height)
 	}
 	
-	def void moveActor(Actor actor, Direction direction) {
-		val src = actor.tile
+	def Tile getTile(Tile src, Direction direction) {
 		val x = src.x + direction.x
 		val y = src.y + direction.y
+		return getTile(x, y)
+	}
+	
+	def void moveActor(Actor actor, Direction direction) {
+		val src = actor.tile
 		
-		if(!isInBounds(x, y)) {
+		val dest = getTile(src, direction)
+		
+		if (dest === null) {
 			return
 		}
 		
-		val dest = getTile(x, y)
-		
-		if (canWalk(x, y)) {
+		if (dest.walkable) {
 			src.removeActor(actor)
 			dest.addActor(actor)
 		} else if (actor.attacker !== null) {
-			val target = dest.getTarget(actor)
-			if (target !== null) {
-				actor.attacker.attack(target)
-			}
+			attackMove(actor, direction)
 		}
-	}
-	
-	def canWalk(int x, int y) {
-		if (!isInBounds(x, y)) {
-			return false
-		}
-		
-		val tile = getTile(x, y)
-		return !tile.walkable
 	}
 	
 	//returns true if a turn has passed
 	def interact(Actor actor, Direction direction) {
-		val src = actor.tile
-		val x = src.x + direction.x
-		val y = src.y + direction.y
+		val dest = getTile(actor.tile, direction)
 		
-		if (isInBounds(x, y)) {
-			val dest = getTile(x, y)
-			val target = dest.getInteractableActor()
-			
-			if (target !== null) {
-				target.interactable.interact(actor)
-				return true
-			}
+		val target = dest?.interactableActor
+		
+		if (target === null) {
+			actor.logIfPlayer(Colours::GREY, "There is nothing there to interact with.")
 		}
-		return false
+		target.interactable.interact(actor)
 	}
+	
+	def attackMove(Actor actor, Direction direction) {
+		val dest = getTile(actor.tile, direction)
+		
+		val target = dest.getTarget(actor)
+		if (target !== null) {
+			actor.attacker.attack(target)
+		}
+	}
+	
 }

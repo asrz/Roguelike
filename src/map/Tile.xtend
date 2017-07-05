@@ -18,6 +18,7 @@ import model.helper.ActorStack
 import model.Actor
 import model.Colours
 import model.Colour
+import model.helper.FXBinding
 
 @FXBindable
 class Tile {
@@ -108,10 +109,10 @@ class Tile {
 	
 	def getWalkable() {
 		if (wall) {
-			return true
+			return false
 		}
 		
-		return actors.flatMap[ actors ].exists[ blocks ]
+		return !actors.flatMap[ actors ].exists[ blocks ]
 	}
 	
 	def getInteractableActor() {
@@ -119,9 +120,7 @@ class Tile {
 	}
 	
 	def foregroundColorProperty() {
-		Bindings.createObjectBinding([
-			return foregroundColour.color
-		], foregroundColourProperty)
+		return FXBinding.nestedBinding(foregroundColourProperty, [get().colorProperty]);
 	}
 	
 }
