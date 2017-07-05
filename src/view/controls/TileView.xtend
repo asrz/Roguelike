@@ -30,7 +30,7 @@ class TileView extends VBox {
 
 		val BackgroundFill backgroundFill = new BackgroundFill(tile.backgroundColour.color, null, null)
 		label.setBackground(new Background(backgroundFill))
-		label.setText('''«tile.symbol»''')
+		label.setText(tile.symbol.toString)
 		resetLabel()
 	}
 
@@ -61,8 +61,8 @@ class TileView extends VBox {
 	}
 
 	def void resetLabel() {
-		label.textProperty().bind(tile.symbolProperty().asString)
-		label.textFillProperty().bind(tile.foregroundColorProperty())// TODO: I think this won't work, maybe it will
+		label.textProperty().bind(tile.symbolProperty().asString())
+		label.textFillProperty().bind(tile.foregroundColorProperty())
 	}
 
 	def Label getLabel() {

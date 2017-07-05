@@ -5,6 +5,9 @@
 .label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
+}
+
+.table-column .label {
 	-fx-background-color: #000000;
 }
 
@@ -202,4 +205,8 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30.0%);
+}
+
+.no-padding {
+	-fx-padding: 0 0 0 0;
 }
