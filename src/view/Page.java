@@ -14,7 +14,9 @@ public enum Page {
 
 	INVENTORY("Inventory", "pages/dialogs/inventory/inventory_screen.fxml", true),
 	PICKUP_MENU("Pickup Menu", "pages/dialogs/pickup_menu/pickup_menu.fxml", true),
-	TRADE_MENU("Trade Menu", "pages/dialogs/trade_menu/trade_menu.fxml", true);
+	TRADE_MENU("Trade Menu", "pages/dialogs/trade_menu/trade_menu.fxml", true),
+	ABILITY_MENU("Abilities", "pages/dialogs/ability_menu/AbilityMenu.fxml", true)
+	;
 
 	private String name;
 	private String resource;

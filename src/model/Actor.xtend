@@ -1,18 +1,23 @@
 package model
 
+import javafx.collections.ObservableList
 import map.Tile
-import org.eclipse.xtend.lib.annotations.Accessors
-import view.GameController
-import view.ScreensController
+import model.abilities.Ability
+import model.abilities.Resource
 import model.ai.Ai
 import model.combat.Attacker
 import model.combat.Destructible
 import model.helper.Context
+import model.items.Container
+import model.items.Pickable
 import model.items.equipment.Equipable
 import model.items.equipment.Equipment
 import model.items.usable.Usable
-import model.items.Container
-import model.items.Pickable
+import org.eclipse.xtend.lib.annotations.Accessors
+import view.GameController
+import view.ScreensController
+
+import static util.CollectionsUtil.*
 
 @Accessors
 class Actor {
@@ -35,12 +40,17 @@ class Actor {
 	
 	boolean destroyed
 	
+	ObservableList<Resource> resources
+	ObservableList<Ability> abilities
+	
 	new (String name, Character character, Colour colour, boolean blocks) {
 		this.name = name
 		this.character = character
 		this.colour = colour
 		this.blocks = blocks
 		GameController::context.addActor(this);
+		this.resources = newObservableList()
+		this.abilities = newObservableList()
 	}
 	
 	def getDisplayPriority() {

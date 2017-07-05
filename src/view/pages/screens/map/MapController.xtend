@@ -7,8 +7,6 @@ import javafx.animation.KeyFrame
 import javafx.animation.KeyValue
 import javafx.animation.Timeline
 import javafx.beans.binding.Bindings
-import javafx.beans.property.DoubleProperty
-import javafx.beans.property.SimpleDoubleProperty
 import javafx.event.EventHandler
 import javafx.fxml.FXML
 import javafx.geometry.Point3D
@@ -18,20 +16,26 @@ import javafx.scene.control.ProgressBar
 import javafx.scene.control.ScrollPane
 import javafx.scene.input.MouseEvent
 import javafx.scene.layout.GridPane
+import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import javafx.scene.text.Text
 import javafx.scene.text.TextFlow
 import javafx.util.Duration
 import map.Tile
+import model.Actor
+import model.Colours
+import model.abilities.Resource
 import model.combat.DamageType
-import util.Context
+import model.combat.Destructible
+import model.helper.Context
+import model.helper.FXBinding
+import model.helper.MappedList
 import view.ControlledScreen
 import view.GameController
 import view.controls.TileView
-import model.combat.Destructible
-import model.Actor
-import model.Colours
+
+import static extension util.PropertyExtensions.*
 
 class MapController implements ControlledScreen {
 	@FXML GridPane mapGrid
@@ -41,6 +45,7 @@ class MapController implements ControlledScreen {
 	@FXML Label playerNameLabel
 	@FXML ProgressBar hpBar
 	@FXML Label hpBarLabel
+	@FXML VBox resourceBars
 	@FXML Label resistancesLabel
 	@FXML Label vulnerabilitiesLabel
 	@FXML Label immunitiesLabel
@@ -64,9 +69,10 @@ class MapController implements ControlledScreen {
 		hpBarLabel.textProperty().bind(
 			destructible.hpProperty().asString("HP: %d").concat(destructible.maxHpProperty().asString("/%d"))
 		)
-		var DoubleProperty hpAsDouble = new SimpleDoubleProperty()
-		hpAsDouble.bind(destructible.hpProperty())
-		hpBar.progressProperty().bind(Bindings::divide(hpAsDouble, destructible.maxHpProperty()))
+		hpBar.progressProperty().bind(Bindings::divide(destructible.hpProperty.asDouble, destructible.maxHpProperty.asDouble))
+
+		val resourceBarList = new MappedList(player.resources, [resourceToProgressBar])
+		Bindings.bindContent(resourceBars.children, resourceBarList)
 
 //		// resistancesLabel.setText(getLabelList(destructible.getResistances()));
 //		destructible.getResistances().addListener([Change<? extends DamageType> c |
@@ -84,12 +90,27 @@ class MapController implements ControlledScreen {
 //		])
 	}
 	
+	def private StackPane resourceToProgressBar(Resource resource) {
+		new StackPane => [
+			children += new ProgressBar => [
+				progressProperty.bind(Bindings.divide(resource.currentProperty.asDouble, resource.maxProperty.asDouble))
+				val styleBinding = Bindings.format("-fx-accent: %s; -fx-control-inner-background: %s; -fx-text-box-border: black;", 
+					FXBinding.nestedBinding(resource.colourProperty, [get().colorProperty], [RGBCode]),
+					FXBinding.nestedBinding(resource.colourProperty, [get().colorProperty], [darken], [RGBCode])
+				)
+				styleProperty.bind(styleBinding)
+			]
+			children += new Label => [
+				textProperty.bind(Bindings.createStringBinding([resource.toString], 
+					resource.nameProperty, resource.currentProperty, resource.maxProperty
+				))
+				textFill = Colours.WHITE.color
+			]
+		]
+	}
+	
 	def private String getLabelList(Collection<? extends DamageType> damageTypes) {
 		return damageTypes.map[ label ].join("\n\t")
-	}
-
-	def void takeTurn() {
-		GameController::getContext().update()
 	}
 
 	override void onLoad(Context context) {
