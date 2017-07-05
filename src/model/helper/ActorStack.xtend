@@ -1,11 +1,10 @@
 package model.helper
 
-import java.util.List
 import javafx.beans.binding.Bindings
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
-import xtendfx.beans.FXBindable
 import model.Actor
+import xtendfx.beans.FXBindable
 
 @FXBindable
 class ActorStack {

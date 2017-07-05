@@ -44,7 +44,7 @@ class Destructible extends Component {
 		owner.tile.addActor(corpse)
 		
 		//removes owner from the map
-		owner.destroy()
+		owner.preDestroy()
 		
 		ScreensController.addMessage(Colours.RED, '''«owner.name» is killed by «killer.name».''')
 	}

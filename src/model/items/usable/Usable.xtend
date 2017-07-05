@@ -32,7 +32,7 @@ class Usable extends Component {
 			uses--
 			if (uses === 0) {
 				user.logIfPlayer(Colours.LIGHTSKYBLUE, '''«owner.name» has been used up.''')
-				owner.destroy()
+				owner.preDestroy()
 			}
 		}
 		currentCooldown = cooldown

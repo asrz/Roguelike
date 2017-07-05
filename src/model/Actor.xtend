@@ -69,11 +69,14 @@ class Actor {
 		}
 	}
 	
-	def destroy() {
+	def preDestroy() {
 		destroyed = true;
+		GameController::context.removeActor(this)
+	}
+	
+	def destroy() {
 		tile?.removeActor(this);
 		pickable?.container?.container?.removeItem(this)
-		GameController::context.removeActor(this)
 		if (isPlayer) {
 			GameController.getStage().close();
 		}
@@ -116,10 +119,12 @@ class Actor {
 		}
 	}
 	
-	def update(Context context) {
-		if (!destroyed) {
-			ai?.update(context);
+	def void update(Context context) {
+		if (destroyed) {
+			return
 		}
+		ai?.update(context);
+		resources.forEach[update]
 	}
 	
 }
