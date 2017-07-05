@@ -1,10 +1,10 @@
 package model.ai
 
 import map.Map
-import model.Direction
-import util.Context
 import model.Actor
 import model.Dice
+import model.Direction
+import model.helper.Context
 
 class RandomAi extends Ai {
 	new(Actor owner) {

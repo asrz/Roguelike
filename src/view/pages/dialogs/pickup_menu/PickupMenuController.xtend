@@ -3,16 +3,16 @@ package view.pages.dialogs.pickup_menu
 import javafx.collections.ObservableList
 import javafx.fxml.FXML
 import javafx.scene.control.Button
+import model.Actor
+import model.helper.ActorStack
+import model.helper.Context
 import org.controlsfx.control.CheckListView
 import org.controlsfx.control.IndexedCheckModel
-import util.Context
 import view.ControlledScreen
 import view.Page
 import view.ScreensController
 
 import static extension util.CollectionsUtil.*
-import model.helper.ActorStack
-import model.Actor
 
 class PickupMenuController implements ControlledScreen {
 	Actor player

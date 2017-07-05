@@ -15,19 +15,19 @@ import javafx.scene.control.TabPane
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableColumn.CellDataFeatures
 import javafx.scene.control.TableView
+import model.Actor
+import model.helper.ActorStack
+import model.helper.Context
 import model.helper.ObservableMapList
-import util.Context
+import model.items.Pickable
+import model.items.equipment.Equipable
+import model.items.equipment.Equipment
+import model.items.usable.Usable
 import util.ControlUtil
 import util.Predicates
 import view.ControlledScreen
 
 import static util.CollectionsUtil.newSortedList
-import model.helper.ActorStack
-import model.items.equipment.Equipable
-import model.items.equipment.Equipment
-import model.items.usable.Usable
-import model.items.Pickable
-import model.Actor
 
 class InventoryController implements ControlledScreen, Initializable {
 	@FXML TabPane tabPane

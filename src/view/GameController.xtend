@@ -5,8 +5,8 @@ import javafx.application.Application
 import javafx.scene.Group
 import javafx.scene.Scene
 import javafx.stage.Stage
+import model.helper.Context
 import org.eclipse.xtend.lib.annotations.Accessors
-import util.Context
 
 class GameController extends Application {
 	@Accessors(PUBLIC_GETTER) static Stage stage

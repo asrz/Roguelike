@@ -17,16 +17,16 @@ import javafx.scene.control.SelectionMode
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.TableView.TableViewSelectionModel
+import model.Actor
+import model.helper.ActorStack
+import model.helper.Context
 import model.helper.ObservableMapList
 import org.controlsfx.glyphfont.FontAwesome
-import util.Context
 import view.ControlledScreen
 import view.Page
 import view.ScreensController
 
 import static util.CollectionsUtil.newSortedList
-import model.helper.ActorStack
-import model.Actor
 
 class TradeMenuController implements ControlledScreen, Initializable {
 	@FXML Label sourceLabel

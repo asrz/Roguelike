@@ -1,7 +1,7 @@
 package model.ai
 
-import util.Context
 import model.Actor
+import model.helper.Context
 
 class HastedAi extends Ai {
 	int actionsPerTurn

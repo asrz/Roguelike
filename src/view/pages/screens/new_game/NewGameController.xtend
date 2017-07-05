@@ -8,7 +8,6 @@ import javafx.scene.control.TextField
 import map.Map
 import map.Tile
 import model.combat.DamageType
-import util.Context
 import util.ControlUtil
 import view.ControlledScreen
 import view.GameController
@@ -21,6 +20,7 @@ import model.ai.Ai
 import model.ai.RandomAi
 import model.combat.Attacker
 import model.combat.Destructible
+import model.helper.Context
 import model.items.equipment.Armour
 import model.items.equipment.Equipable
 import model.items.equipment.Equipment

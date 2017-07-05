@@ -1,8 +1,8 @@
 package model.ai
 
-import model.Direction
-import util.Context
 import model.Actor
+import model.Direction
+import model.helper.Context
 
 class AggressiveAi extends Ai {
 	Actor target

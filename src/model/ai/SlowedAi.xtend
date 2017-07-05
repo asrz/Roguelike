@@ -1,9 +1,9 @@
 package model.ai
 
-import util.Context
 import model.Actor
+import model.helper.Context
 
-class SlowedAiX extends Ai {
+class SlowedAi extends Ai {
 	int turnsPerAction
 	int turn
 

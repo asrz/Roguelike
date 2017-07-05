@@ -4,10 +4,10 @@ import map.Tile
 import org.eclipse.xtend.lib.annotations.Accessors
 import view.GameController
 import view.ScreensController
-import util.Context
 import model.ai.Ai
 import model.combat.Attacker
 import model.combat.Destructible
+import model.helper.Context
 import model.items.equipment.Equipable
 import model.items.equipment.Equipment
 import model.items.usable.Usable

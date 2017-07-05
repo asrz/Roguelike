@@ -1,13 +1,13 @@
 package model.ai
 
-import util.Context
 import model.Actor
 import model.Component
+import model.helper.Context
 
 abstract class Ai extends Component {
 	Ai oldAi
 	int turnsLeft // -1 == forever
-	
+
 	new(Actor owner) {
 		this(owner, -1, null)
 	}
